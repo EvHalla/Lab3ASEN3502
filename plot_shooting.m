@@ -1,11 +1,11 @@
 function plot_shooting(x, r0, rf, plotTitle)
 
 figure
-plot(0,0,'LineWidth',2)  % TODO: plot trajectory
+plot(x(:,1), x(:,2), 'LineWidth',2)  % TODO: plot trajectory
 hold on
-plot(0,0,'ko','MarkerFaceColor','k') % TODO: plot initial position
-plot(0,0,'rx','MarkerSize',10,'LineWidth',2) % TODO: plot requested final position
-plot(0,0,'bo','MarkerSize',8,'LineWidth',2) % TODO: plot actual final position
+plot(r0(1),r0(2),'ko','MarkerFaceColor','k') % TODO: plot initial position
+plot(rf(1),rf(2),'rx','MarkerSize',10,'LineWidth',2) % TODO: plot requested final position
+plot(x(end,1),x(end,2),'bo','MarkerSize',8,'LineWidth',2) % TODO: plot actual final position
 
 axis equal
 grid on
