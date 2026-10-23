@@ -35,3 +35,6 @@ xlabel('x (km)'); ylabel('y (km)');
 title('Task 2.4: Iterative Newton Shooting');
 legend('Trajectory', 'Start', 'Target', 'Final Position');
 saveas(gcf, 'task2_4_converged.png');
+
+fprintf('Final miss: %.6f m\n', miss_after);
+fprintf('Iterations: %d\n', info.iterations);
