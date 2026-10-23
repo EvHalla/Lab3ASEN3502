@@ -10,7 +10,7 @@ options = odeset('RelTol', 1e-12, 'AbsTol', 1e-14);
 x_ode45 = interp1(t2, x2, t);
 for i = 1:length(x)
 errorNorm(i,1) = norm(x(i,1:3) - x_ode45(i,1:3));
-normode45(i,1) = norm(x_ode45(i,1));
+normode45(i,1) = norm(x_ode45(i,1:3));
 end
 
 %overlay of both trajectories
