@@ -12,7 +12,7 @@ h = 2;  % RK4 step size [s]
     'wody8861@colorado.edu');
 fprintf('Task 2.5 three-body challenge score: %.0f hours\n', score)
 
-figure('Color', 'w')
+figure('Color', 'w', 'Theme', 'light', 'Position', [100 100 1000 750])
 plot(x(:,1)/1e3, x(:,2)/1e3, 'b-', 'LineWidth', 1)
 hold on
 plot(0, 0, 'ko', 'MarkerFaceColor', 'k')
@@ -23,11 +23,12 @@ axis equal
 grid on
 xlabel('x position [km]')
 ylabel('y position [km]')
-title(sprintf('Task 2.5: three-body trajectory, RK4 h = %g s', h))
+title(sprintf('Task 2.5: %g-hour three-body trajectory, RK4 h = %g s', durationHours, h))
 legend('Spacecraft', 'Earth', 'Start', 'End', 'Location', 'best')
 ax = gca;
 ax.Toolbar.Visible = 'off';
-exportgraphics(gcf, 'lab_2_5_trajectory.png', 'Resolution', 200)
+exportgraphics(gcf, 'lab_2_5_trajectory.png', ...
+    'Resolution', 300, 'BackgroundColor', 'white')
 
 if ~isempty(tRef)
     fprintf('First evaluator failure near %.2f hours; %d reference samples returned.\n', ...

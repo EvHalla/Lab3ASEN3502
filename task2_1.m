@@ -24,17 +24,29 @@ legend('RK4, h = 100 s', 'ode45, RelTol 1e-12');
 title('Trajectory Overlay');
 
 %position difference and geocentric radius versus time plots
-figure;
-subplot(2,1,1)
-plot(t, errorNorm)
+fig5 = figure('Color', 'w', 'Theme', 'light', 'Position', [100 100 1100 750]);
+tiledlayout(2,1, 'TileSpacing', 'compact', 'Padding', 'compact')
+nexttile
+plot(t/3600, errorNorm, 'b-', 'LineWidth', 1.4)
+grid on
 xlabel('Time (hours)'); 
 ylabel('||\Delta r|| (m)');
 title('Position Difference, RK4 (h = 100 s) vs ode45');
-xlim([0,7.2e5]);
-subplot(2,1,2)
-plot(t,normode45)
+xlim([0,intnew(2)/3600]);
+nexttile
+plot(t/3600,normode45/1e3, 'b-', 'LineWidth', 1.4)
+grid on
 xlabel('Time (hours)'); 
 ylabel('Geocentric Radius (km)');
-title('Geocentric Radius');
-xlim([0,7.2e5]);
+title('Geocentric Radius from ode45');
+xlim([0,intnew(2)/3600]);
+sgtitle({'Task 2.1: fixed-step RK4 versus adaptive ode45', ...
+    'RK4 h = 100 s; ode45 RelTol = 10^{-12}, AbsTol = 10^{-14}'})
+labDir = fileparts(mfilename('fullpath'));
+exportgraphics(fig5, fullfile(labDir, 'task2_1_figure5.png'), ...
+    'Resolution', 300, 'BackgroundColor', 'white')
+[peakError, peakIndex] = max(errorNorm);
+fprintf('Peak position difference: %.6f m at %.6f hours\n', ...
+    peakError, t(peakIndex)/3600)
+fprintf('Minimum sampled geocentric radius: %.6f km\n', min(normode45)/1e3)
 
